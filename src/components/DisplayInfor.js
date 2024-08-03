@@ -1,39 +1,39 @@
 import React from "react";
-
+import './DisplayInfor.scss'
 class DisplayInfor extends React.Component {
-    
+
     state = {
-        isShowListUser:true
+        isShowListUser: true
     }
-    
+
     handleShowHide = () => {
         this.setState({
             isShowListUser: !this.state.isShowListUser // toggle, here we set the ! mark to get the opposite value of var
         })
     }
-    
+
     render() {
         //destructuring array/object
         const { listUsers } = this.props;// object
         return (
-            <div>
+            <div className="display-infor-container">
                 <div>
-                    <span onClick={() => {this.handleShowHide()}}>
-                    
-                        {this.state.isShowListUser === true ? 'Hide list users:': 'Show list users:'}
+                    <span onClick={() => { this.handleShowHide() }}>
+
+                        {this.state.isShowListUser === true ? 'Hide list users:' : 'Show list users:'}
                     </span>
                 </div>
-                { this.state.isShowListUser && 
+                {this.state.isShowListUser &&
                     <div>
-                        { listUsers.map((user) => {
+                        {listUsers.map((user) => {
                             return (
                                 <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
                                     <div>My name's {user.name}</div>
                                     <div>My age's {user.age}</div>
-                                    <hr/>
+                                    <hr />
                                 </div>
                             )
-                        })}               
+                        })}
                     </div>
                 }
             </div>
