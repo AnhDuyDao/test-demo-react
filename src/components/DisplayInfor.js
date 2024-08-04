@@ -1,36 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './DisplayInfor.scss'
 import logo from '../logo.svg'
-// 2 cach viet cho component co state va ko co
-// stateful: below
-// class DisplayInfor extends React.Component {
-//    render() {
-//       console.log('>>> Call me render')
-//       //destructuring array/object
-//       const { listUsers } = this.props;// object
-//       return (
-//          <div className="display-infor-container">
-
-//             {true &&
-//                <>
-//                   {listUsers.map((user) => {
-//                      return (
-//                         <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
-//                            <div>My name's {user.name}</div>
-//                            <div>My age's {user.age}</div>
-//                            <div>
-//                               <button onClick={() => this.props.handleDeleteUser(user.id)}> Delete </button>
-//                            </div>
-//                            <hr />
-//                         </div>
-//                      )
-//                   })}
-//                </>
-//             }
-//          </div>
-//       );
-//    }
-// }
 
 //stateless: below and ussing useState() to convert stateless to stateful
 const DisplayInfor = (props) => {
@@ -41,6 +11,17 @@ const DisplayInfor = (props) => {
    const handleShowHideListUser = () => {
       setShowHideListUser(!isShowHideListUser);
    }
+
+   console.log(">>Call me render");
+
+   useEffect(
+      () => {
+         if (listUsers.length === 0) {
+            alert('You deleted all users')
+         }
+         console.log(">>Call me useEffect");
+      }, [listUsers]
+   );
 
    return (
       <div className="display-infor-container">
