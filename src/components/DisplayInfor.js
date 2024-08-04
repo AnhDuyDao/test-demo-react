@@ -31,7 +31,8 @@ import logo from '../logo.svg'
 //       );
 //    }
 // }
-//stateless: below
+
+//stateless: below and ussing useState() to convert stateless to stateful
 const DisplayInfor = (props) => {
    const { listUsers } = props;// object
 
