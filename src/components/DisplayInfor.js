@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import './DisplayInfor.scss'
 import logo from '../logo.svg'
 // 2 cach viet cho component co state va ko co
 // stateful: below
 // class DisplayInfor extends React.Component {
-
 //    render() {
 //       console.log('>>> Call me render')
 //       //destructuring array/object
@@ -36,9 +35,20 @@ import logo from '../logo.svg'
 const DisplayInfor = (props) => {
    const { listUsers } = props;// object
 
+   const [isShowHideListUser, setShowHideListUser] = useState(true);
+
+   const handleShowHideListUser = () => {
+      setShowHideListUser(!isShowHideListUser);
+   }
+
    return (
       <div className="display-infor-container">
-         {true &&
+         <div>
+            <span onClick={() => handleShowHideListUser()} >
+               {isShowHideListUser === true ? 'Hide list users' : 'Show list users'}
+            </span>
+         </div>
+         {isShowHideListUser &&
             <>
                {listUsers.map((user) => {
                   return (
