@@ -1,51 +1,63 @@
 import React from "react";
 import './DisplayInfor.scss'
 import logo from '../logo.svg'
-class DisplayInfor extends React.Component {
+// 2 cach viet cho component co state va ko co
+// stateful: below
+// class DisplayInfor extends React.Component {
 
-   state = {
-      isShowListUser: true
-   }
+//    render() {
+//       console.log('>>> Call me render')
+//       //destructuring array/object
+//       const { listUsers } = this.props;// object
+//       return (
+//          <div className="display-infor-container">
 
-   handleShowHide = () => {
-      this.setState({
-         isShowListUser: !this.state.isShowListUser // toggle, here we set the ! mark to get the opposite value of var
-      })
-   }
+//             {true &&
+//                <>
+//                   {listUsers.map((user) => {
+//                      return (
+//                         <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
+//                            <div>My name's {user.name}</div>
+//                            <div>My age's {user.age}</div>
+//                            <div>
+//                               <button onClick={() => this.props.handleDeleteUser(user.id)}> Delete </button>
+//                            </div>
+//                            <hr />
+//                         </div>
+//                      )
+//                   })}
+//                </>
+//             }
+//          </div>
+//       );
+//    }
+// }
+//stateless: below
+const DisplayInfor = (props) => {
+   const { listUsers } = props;// object
 
-
-
-   render() {
-      //destructuring array/object
-      const { listUsers } = this.props;// object
-      return (
-         <div className="display-infor-container">
-            {/* <img src={logo} /> */}
-            <div>
-               <span onClick={() => { this.handleShowHide() }}>
-
-                  {this.state.isShowListUser === true ? 'Hide list users:' : 'Show list users:'}
-               </span>
-            </div>
-            {this.state.isShowListUser &&
-               <>
-                  {listUsers.map((user) => {
-                     return (
-                        <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
-                           <div>My name's {user.name}</div>
-                           <div>My age's {user.age}</div>
-                           <div>
-                              <button onClick={() => this.props.handleDeleteUser(user.id)}> Delete </button>
-                           </div>
-                           <hr />
+   return (
+      <div className="display-infor-container">
+         {true &&
+            <>
+               {listUsers.map((user) => {
+                  return (
+                     <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
+                        <div>My name's {user.name}</div>
+                        <div>My age's {user.age}</div>
+                        <div>
+                           <button onClick={() => props.handleDeleteUser(user.id)}> Delete </button>
                         </div>
-                     )
-                  })}
-               </>
-            }
-         </div>
-      );
-   }
+                        <hr />
+                     </div>
+                  )
+               })}
+            </>
+         }
+      </div>
+   );
+
 }
+
 
 export default DisplayInfor;
