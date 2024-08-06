@@ -11,6 +11,8 @@ import {
 } from 'react-pro-sidebar';
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
+import { DiReact } from "react-icons/di";
+import { MdDashboard } from 'react-icons/md'
 
 const Sidebar = (props) => {
    const { image, collapsed, toggled, handleToggleSidebar } = props;
@@ -37,7 +39,8 @@ const Sidebar = (props) => {
                      whiteSpace: 'nowrap',
                   }}
                >
-                  Fun Qizz
+                  <DiReact size={'3em'} />
+                  <span>Ask IT</span>
                </div>
             </SidebarHeader>
 
@@ -45,21 +48,22 @@ const Sidebar = (props) => {
                <Menu iconShape="circle">
                   <MenuItem
                      icon={<FaTachometerAlt />}
-                     suffix={<span className="badge red">New</span>}
+
                   >
                      Dashboard
                   </MenuItem>
-                  <MenuItem icon={<FaGem />}> Compoents</MenuItem>
+
                </Menu>
                <Menu iconShape="circle">
                   <SubMenu
-                     suffix={<span className="badge yellow">3</span>}
-
-                     icon={<FaRegLaughWink />}
+                     // suffix={<span className="badge yellow">3</span>}
+                     // icon={<FaRegLaughWink />}
+                     icon={<FaGem />}
+                     title='Features'
                   >
-                     <MenuItem> 1</MenuItem>
-                     <MenuItem>2</MenuItem>
-                     <MenuItem>3</MenuItem>
+                     <MenuItem>Users</MenuItem>
+                     <MenuItem>Quizz</MenuItem>
+                     <MenuItem>Question</MenuItem>
                   </SubMenu>
                </Menu>
             </SidebarContent>
@@ -79,7 +83,7 @@ const Sidebar = (props) => {
                   >
                      <FaGithub />
                      <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                        viewSource
+                        Duy Anh
                      </span>
                   </a>
                </div>
