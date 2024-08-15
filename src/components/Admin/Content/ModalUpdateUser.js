@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from "react-icons/fc";
 import { toast } from 'react-toastify';
-import { postCreateNewUser } from '../../../services/apiServices';
+import { putUpdateUser } from '../../../services/apiServices';
 import _ from 'lodash'
 
 const ModalUpdateUser = (props) => {
@@ -18,6 +18,7 @@ const ModalUpdateUser = (props) => {
       setUsername("");
       setImage("");
       setPreviewImage("");
+      props.resetUpdateData();
    };
 
 
@@ -65,14 +66,8 @@ const ModalUpdateUser = (props) => {
          return;
       }
 
-      if (!password) {
-         toast.error('Invalid Password');
-         return;
-      }
 
-
-
-      let data = await postCreateNewUser(email, password, username, role, image);
+      let data = await putUpdateUser(dataUpdate.id, username, role, image);
       console.log("component res:", data);
       if (data && data.EC === 0) {
          toast.success(data.EM);
