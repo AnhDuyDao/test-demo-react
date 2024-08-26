@@ -5,6 +5,7 @@ import TableUser from "./TableUser";
 import { useEffect, useState } from "react"
 import { getAllUsers } from "../../../services/apiServices";
 import ModalUpdateUser from "./ModalUpdateUser";
+import ModalDeleteUser from "./ModalDeleteUser";
 
 const ManageUser = (props) => {
    const [showModalCreateUser, setShowModalCreateUser] = useState(false);
@@ -13,6 +14,9 @@ const ManageUser = (props) => {
 
    const [dataUpdate, setDataUpdate] = useState({});
 
+   const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
+
+   const [dataDelete, setDataDelete] = useState({});
 
    const [listUsers, setListUsers] = useState([]);
    //componentDidMount
@@ -37,6 +41,11 @@ const ManageUser = (props) => {
       setDataUpdate({});
    }
 
+   const handleClickBtnDelete = (user) => {
+      setShowModalDeleteUser(true);
+      setDataDelete(user);
+   }
+
    return (
       <div className="manage-user-container">
          <div className="title">
@@ -47,12 +56,11 @@ const ManageUser = (props) => {
                <button className="btn btn-primary" onClick={() => setShowModalCreateUser(true)}><FcPlus /> Add new users</button>
             </div>
             <div className="table-users-container">
-
                <TableUser
                   listUsers={listUsers}
                   handleClickBtnUpdate={handleClickBtnUpdate}
+                  handleClickBtnDelete={handleClickBtnDelete}
                />
-
             </div>
             <ModalCreateUser
                show={showModalCreateUser}
@@ -65,6 +73,11 @@ const ManageUser = (props) => {
                dataUpdate={dataUpdate}
                fetchListUsers={fetchListUsers}
                resetUpdateData={resetUpdateData}
+            />
+            <ModalDeleteUser
+               show={showModalDeleteUser}
+               setShow={setShowModalDeleteUser}
+               dataDelete={dataDelete}
             />
          </div>
 
